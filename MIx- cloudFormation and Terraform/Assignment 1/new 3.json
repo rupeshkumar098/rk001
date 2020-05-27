@@ -1,0 +1,92 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+
+  "Description" : "Create IAM user with specific permissions : 1.LambdaFullAccess 2.S3 Read only Access 3.CloudWatch Read Only Access ",
+
+  
+  "Parameters" : {
+    
+  },
+  
+  "Mappings" : {
+    
+
+  },
+  
+
+  
+  
+  
+  
+   
+
+  "Resources" : {
+  "myuser" : {
+   "Type" : "AWS::IAM::User",
+   
+   "Properties" : {
+       
+       "LoginProfile" : {
+            "Password" : "Rupesh@12345"
+        },
+       "Policies" : [ {
+         "PolicyName" : "LambdaFullAccess",
+         "PolicyDocument" : {
+            "Version": "2012-10-17",
+            "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        
+        "lambda:*",
+     
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+      }, {
+         "PolicyName" : "AWS-s3-read-only",
+         "PolicyDocument" : {
+           "Version": "2012-10-17",
+           "Statement": [
+              {
+                 "Effect": "Allow",
+                  "Action": [
+                  "s3:Get*",
+                  "s3:List*"
+             ],
+            "Resource": "*"
+              }
+            ]
+          }
+         },
+           {
+         "PolicyName" : "CloudWatchReadOnlyAccess",
+         "PolicyDocument" :
+             {
+                "Version": "2012-10-17",
+                "Statement": [
+    {
+      "Action": [
+
+        "cloudwatch:Get*",
+        "cloudwatch:List*",
+      
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+            }
+           ]
+          }		 
+        }		 
+		 
+		 
+		 
+		 ]
+   }
+   }
+   
+  }
+  
+ }
